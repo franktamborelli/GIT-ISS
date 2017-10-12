@@ -31,3 +31,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/maven,windows,netbeans
+/SistemaSac_1/nbproject/private/

@@ -41,10 +41,17 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
-    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
-    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/ExemploJDBC</property>
-    <property name="hibernate.connection.username">ExemploJDBC</property>
-    <property name="hibernate.connection.password">ExemploJDBC</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.connection.username">WebSac</property>
+    <property name="hibernate.connection.password">websac</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
+    <mapping class="br.com.websac.entity.Clientes"/>
+    <mapping class="br.com.websac.entity.Filial"/>
+    <mapping class="br.com.websac.entity.Ocorrencia"/>
+    <mapping class="br.com.websac.entity.Origem"/>
+    <mapping class="br.com.websac.entity.Status"/>
+    <mapping class="br.com.websac.entity.Funcionarios"/>
   </session-factory>
 </hibernate-configuration>
