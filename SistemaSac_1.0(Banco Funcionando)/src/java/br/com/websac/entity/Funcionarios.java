@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Matheus Colares
+ * @author Frank
  */
 @Entity
 @Table(name="FUNCIONARIO")

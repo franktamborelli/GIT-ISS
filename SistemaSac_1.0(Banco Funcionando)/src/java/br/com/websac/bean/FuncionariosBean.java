@@ -5,7 +5,10 @@ import br.com.websac.entity.Funcionarios;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -17,11 +20,58 @@ public class FuncionariosBean implements Serializable {
 
     private Funcionarios funcionario = new Funcionarios();
     private FuncionariosDao funcionariodao = new FuncionariosDao();
+    private List<Funcionarios> listfuncionario;
      
+    
+  
     public String adicionarFuncionarios(){
         
         funcionariodao.addFuncionarios(funcionario);
-        return "index";
+        funcionario.setNome(null);
+        funcionario.setCargo(null);
+        funcionario.setCelular(null);
+        funcionario.setEmail(null);
+        funcionario.setSenha(null);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro criado com sucesso"));
+        return "cadastrarFuncionario";
+    }
+    
+    public String removerFuncionario(Funcionarios f){
+        this.funcionario = f;
+        funcionariodao.removerFuncionarios(this.funcionario);
+        funcionario.setNome(null);
+        funcionario.setCargo(null);
+        funcionario.setCelular(null);
+        funcionario.setEmail(null);
+        funcionario.setSenha(null);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario removido com sucesso"));       
+        return "cadastroFuncionario";
+    }
+    
+    public List listarFuncionarios(){
+        listfuncionario = funcionariodao.getList();
+        return this.listfuncionario;
+    }
+        
+    public String carregarFuncionarios(Funcionarios f){
+        funcionario = f;
+        return"editarFuncionario";
+    
+    }
+    
+    public String atualizarFuncionarios(){
+        funcionariodao.atualizarFuncionarios(funcionario);
+        funcionario.setNome(null);
+        funcionario.setCargo(null);
+        funcionario.setCelular(null);
+        funcionario.setEmail(null);
+        funcionario.setSenha(null);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario atualizado com sucesso"));
+        return "cadastrarFuncionario";
+        
     }
         
     public Funcionarios getFuncionarios() {

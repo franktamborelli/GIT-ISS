@@ -2,6 +2,8 @@ package br.com.websac.dao;
 
 import br.com.websac.entity.Clientes;
 import br.com.websac.util.HibernateUtil;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,6 +16,18 @@ public class ClientesDao {
     
     private Session sessao;
     private Transaction trans;
+    private List<Clientes> list;
+
+    public List<Clientes> getList() {
+        
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        Criteria cri = sessao.createCriteria(Clientes.class);
+        this.list = cri.list();
+                
+        return list;
+    }
     
     public void addCliente(Clientes c){
         
@@ -36,8 +50,41 @@ public class ClientesDao {
         }
           catch (HibernateException e) {
                           
-              System.out.println("Não houe conexão com o HibernateUtil");
+              System.out.println("Não houve conexão com o HibernateUtil");
               
         } 
     }
+    
+    public void removerCliente(Clientes c){
+        
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            trans = sessao.beginTransaction();
+            
+            sessao.delete(c);
+            trans.commit();
+        }
+          catch (HibernateException e) {
+                          
+              System.out.println("Não houve conexão com o HibernateUtil");
+              
+        } 
+    }
+    
+     public void atualizarCliente(Clientes c){
+        
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            trans = sessao.beginTransaction();
+            
+            sessao.update(c);
+            trans.commit();
+        }
+          catch (HibernateException e) {
+                          
+              System.out.println("Não houve conexão com o HibernateUtil");
+              
+        } 
+    }
+    
 }

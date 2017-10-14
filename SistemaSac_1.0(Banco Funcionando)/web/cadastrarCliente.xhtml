@@ -42,14 +42,72 @@
 	                <p:outputLabel value="Complemento:"/>
                         <p:inputText size="27" value="#{clientesBean.clientes.complemento}"/>
                 </h:panelGrid>
+              
+              <p:separator/>
+              <p:separator/>
+              
+              <p:growl id="growl" showDetail="true" sticky="true" />
+              
+               <p:panelGrid style="border:0px">
+           
+                    <p:commandButton value="Salvar" actionListener="#{clientesBean.adicionarCliente}" 
+                                     update="growl"/>
+               </p:panelGrid>	
         </p:tab>
      
-    </p:tabView>
-       <p:panelGrid  style="border:0px">
-           
-           <p:commandButton value="Salvar" action="#{clientesBean.adicionarCliente}"/>
          
-       </p:panelGrid>	
+     <p:tab title="Relatório de Cliente">
+         <p:dataTable id="itensTable" value="#{clientesBean.listarClientes()}" var="cli"
+            emptyMessage="Nenhum item adicionado."
+            reflow="true"
+            style="margin-top: 10px; ">
+
+            <p:column headerText="Id">
+                    <h:outputText value="#{cli.id}"/>
+            </p:column>
+
+            <p:column headerText="Nome">
+                    <h:outputText value="#{cli.nome}"/>
+            </p:column>
+             
+            <p:column headerText="Data Nascimento">
+                    <h:outputText value="#{cli.datancto}"/>
+            </p:column>
+
+            <p:column headerText="Celular">
+                    <h:outputText value="#{cli.celular}"/>
+            </p:column>
+
+            <p:column headerText="Telefone">
+                    <h:outputText value="#{cli.telefone}"/>
+            </p:column>
+
+            <p:column headerText="Email">
+                    <h:outputText value="#{cli.email}"/>
+            </p:column>
+             
+            <p:column headerText="Endereço">
+                    <h:outputText value="#{cli.endereco}"/>
+            </p:column>
+             
+            <p:column headerText="N°">
+                    <h:outputText value="#{cli.numero}"/>
+            </p:column>
+
+            <p:column headerText="Complemento">
+                    <h:outputText value="#{cli.complemento}"/>
+            </p:column>
+            
+             <p:column headerText="Ação">
+               <h:commandLink value = "Remover" actionListener="#{clientesBean.removerCliente(cli)}"/>
+               <p:separator/>
+               <h:commandLink value = "Atualizar" action="#{clientesBean.carregarCliente(cli)}" />
+            </p:column>           
+             
+            </p:dataTable>
+     </p:tab>
+    </p:tabView>
+      
     </h:form>
     </ui:define>
 
