@@ -33,7 +33,7 @@ public class FuncionariosBean implements Serializable {
         funcionario.setEmail(null);
         funcionario.setSenha(null);
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro criado com sucesso"));
+        context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario adicionado com sucesso"));
         return "cadastrarFuncionario";
     }
     
@@ -47,7 +47,7 @@ public class FuncionariosBean implements Serializable {
         funcionario.setSenha(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario removido com sucesso"));       
-        return "cadastroFuncionario";
+        return "cadastrarFuncionario";
     }
     
     public List listarFuncionarios(){

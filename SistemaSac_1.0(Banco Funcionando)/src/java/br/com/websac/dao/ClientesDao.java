@@ -37,13 +37,19 @@ public class ClientesDao {
             
             Clientes cli = new Clientes();
             cli.setNome(c.getNome());
-            cli.setEndereco(c.getEndereco());
             cli.setNumero(c.getNumero());
+            cli.setEndereco(c.getEndereco());
             cli.setComplemento(c.getComplemento());
+            cli.setUf(c.getUf());
+            cli.setCidade(c.getCidade());
+            cli.setBairro(c.getBairro());
+            cli.setCep(c.getCep());
             cli.setTelefone(c.getTelefone());
             cli.setEmail(c.getEmail());
             cli.setCelular(c.getCelular());
             cli.setDatancto(c.getDatancto());
+            
+           
             
             sessao.save(cli);
             trans.commit();

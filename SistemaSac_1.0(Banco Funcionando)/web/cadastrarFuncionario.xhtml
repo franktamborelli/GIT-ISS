@@ -10,7 +10,7 @@
     <ui:define name="corpo">              
         <title>Cadastrar Usuário</title>
   
- <h:form>
+ <h:form id="form2">
 
 <h2>Funcionário</h2>
      <p:tabView>
@@ -32,10 +32,12 @@
         
 	        </h:panelGrid>   
 	      <p:separator/>
-              <p:growl id="growl" showDetail="true" sticky="true" />
-              <p:panelGrid  style="border:0px">
+              
+              <p:growl id="growl" showDetail="true" sticky="true"/>
+              
+              <p:panelGrid  style="border:0px ">
            
-                 <p:commandButton value="Salvar" actionListener="#{funcionariosBean.adicionarFuncionarios}" update="growl"/>
+                  <p:commandButton value="Salvar" action="#{funcionariosBean.adicionarFuncionarios}" update=":form2" />
                  
               </p:panelGrid>
         </p:tab>
@@ -72,7 +74,7 @@
              
             
             <p:column headerText="Ação">
-                <h:commandLink value = "Remover" actionListener="#{funcionariosBean.removerFuncionario(fun)}"/>
+                <h:commandLink value = "Remover" action="#{funcionariosBean.removerFuncionario(fun)}"/>
                <p:separator/>
                <h:commandLink value = "Atualizar" action="#{funcionariosBean.carregarFuncionarios(fun)}"/>
             </p:column>           
