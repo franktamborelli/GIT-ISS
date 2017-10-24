@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Cadastrar Cliente</title>  
+      <h:form id="form1">
+
+<h2>Cliente</h2>
+     <p:tabView>
+        <p:tab title="Cadastro de Cliente">
+        <p:separator/>
+             <h:panelGrid columns="4" cellpadding="10">
+	                <p:outputLabel value="Nome:"/>
+                        <p:inputText size="55" value="#{clientesBean.clientes.nome}" />
+	                <p:outputLabel value="Email:"/>
+                        <p:inputText size="55" placeholder="Ex: example@dominio.com.br" 
+                                     value="#{clientesBean.clientes.email}"/>
+	                <p:outputLabel value="Telefone:"/>
+	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
+                                     value="#{clientesBean.clientes.telefone}"/>
+	                <p:outputLabel value="Celular:"/>
+	                <p:inputMask mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
+                                     value="#{clientesBean.clientes.celular}"/>
+	                <p:outputLabel value="Data Nasc.:"/>
+                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
+                                     value="#{clientesBean.clientes.datancto}"/>
+        
+	            </h:panelGrid>   
+	      <p:separator/>
+	            <h:panelGrid columns="6">
+	                <h:form>
+                            <h:panelGrid id="pnCEP" columns="3">
+                                <h:outputText value="CEP: " />
+                                <p:inputMask mask="99999-999" value="#{clientesBean.cep}" />
+
+                                <p:commandButton value="Pesquisar" icon="ui-icon-search"
+                                    action="#{clientesBean.encontraCEP}" update=":form1" />
+                            </h:panelGrid>
+                        </h:form>
+
+                        <h:form>
+                            <h:panelGrid id="pnResultado" columns="2">
+                                <h:outputLabel value="UF: "
+                                    style="font-weight:bold; padding-right: 5px; float: right;" />
+                                <p:inputText size="5" value="#{clientesBean.estado}" />
+
+                                <h:outputLabel value="Logradouro: "
+                                    style="font-weight:bold; padding-right: 5px; float: right;" />
+                                <p:inputText size="50"
+                                    value="#{clientesBean.tipoLogradouro}" />
+
+                                <h:outputLabel value="Cidade: "
+                                    style="font-weight:bold; padding-right: 5px; float: right;" />
+                                <p:inputText size="50" value="#{clientesBean.cidade}" />
+
+                                <h:outputLabel value="Bairro: "
+                                    style="font-weight:bold; padding-right: 5px; float: right;" />
+                                <p:inputText size="25" value="#{clientesBean.bairro}" />
+                                
+                            </h:panelGrid>
+                        </h:form>
+                    </h:panelGrid>
+              
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:outputLabel value="Nª"/>
+                    <p:inputText size="6" value="#{clientesBean.clientes.numero}"/>
+                    <p:outputLabel value="Complemento:"/>
+                    <p:inputText size="27" value="#{clientesBean.clientes.complemento}"/>
+                </h:panelGrid>
+              
+              <p:separator/>
+              <p:separator/>
+               <p:panelGrid style="border:0px">
+           
+                    <p:commandButton value="Salvar" action="#{clientesBean.adicionarCliente}"/>
+
+               </p:panelGrid>	
+        </p:tab>
+     
+         
+     <p:tab title="Relatório de Cliente">
+         <p:dataTable id="itensTable" value="#{clientesBean.listarClientes()}" var="cli"
+            emptyMessage="Nenhum item adicionado."
+            reflow="true"
+            style="margin-top: 10px; ">
+
+             <p:column headerText="Id" >
+                    <h:outputText value="#{cli.id}"/>
+            </p:column>
+
+            <p:column headerText="Nome">
+                    <h:outputText value="#{cli.nome}"/>
+            </p:column>
+             
+            <p:column headerText="Data Nascimento">
+                    <h:outputText value="#{cli.datancto}"/>
+            </p:column>
+
+            <p:column headerText="Celular">
+                    <h:outputText value="#{cli.celular}"/>
+            </p:column>
+
+            <p:column headerText="Telefone">
+                    <h:outputText value="#{cli.telefone}"/>
+            </p:column>
+
+            <p:column headerText="Email">
+                    <h:outputText value="#{cli.email}"/>
+            </p:column>
+             
+            <p:column headerText="Email">
+                    <h:outputText value="#{cli.cidade}"/>
+            </p:column>
+            
+            <p:column headerText="Email">
+                    <h:outputText value="#{cli.uf}"/>
+            </p:column>
+            
+            <p:column headerText="Email">
+                    <h:outputText value="#{cli.bairro}"/>
+            </p:column>
+             
+            <p:column headerText="Endereço">
+                    <h:outputText value="#{cli.endereco}"/>
+            </p:column>
+             
+            <p:column headerText="Endereço">
+                    <h:outputText value="#{cli.cep}"/>
+            </p:column>
+             
+            <p:column headerText="N°">
+                    <h:outputText value="#{cli.numero}"/>
+            </p:column>
+
+            <p:column headerText="Complemento">
+                    <h:outputText value="#{cli.complemento}"/>
+            </p:column>
+            
+             <p:column headerText="Ação">
+               <h:commandLink value = "Remover" action="#{clientesBean.removerCliente(cli)}"/>
+               <p:separator/>
+               <h:commandLink value = "Atualizar" action="#{clientesBean.carregarCliente(cli)}"/>
+            </p:column>           
+             
+            </p:dataTable>
+     </p:tab>
+    </p:tabView>
+      
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+
