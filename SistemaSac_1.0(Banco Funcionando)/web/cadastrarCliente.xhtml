@@ -17,28 +17,32 @@
         <p:tab title="Cadastro de Cliente">
         <p:separator/>
              <h:panelGrid columns="4" cellpadding="10">
-	                <p:outputLabel value="Nome:"/>
-                        <p:inputText size="55" value="#{clientesBean.clientes.nome}" />
-	                <p:outputLabel value="Email:"/>
-                        <p:inputText size="55" placeholder="Ex: example@dominio.com.br" 
-                                     value="#{clientesBean.clientes.email}"/>
+	                <p:outputLabel for="name" value="Nome:"/>
+                        <p:inputText id="name" size="55" value="#{clientesBean.clientes.nome}" required="true"/>
+                        <p:outputLabel for="cpf" value="CPF:"/>
+                        <p:inputMask  mask="999.999.999-99" size="55" 
+                                     value="#{clientesBean.clientes.cpf}" required="true" id="cpf"/>
+                        <p:outputLabel for="email" value="Email:"/>
+                        <p:inputText id="email" size="55" placeholder="Ex: example@dominio.com.br" 
+                                     value="#{clientesBean.clientes.email}" required="true"/>
+                        <p:outputLabel value="Data Nasc.:"/>
+                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
+                                     value="#{clientesBean.clientes.datancto}"/>
 	                <p:outputLabel value="Telefone:"/>
 	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
                                      value="#{clientesBean.clientes.telefone}"/>
-	                <p:outputLabel value="Celular:"/>
-	                <p:inputMask mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
-                                     value="#{clientesBean.clientes.celular}"/>
-	                <p:outputLabel value="Data Nasc.:"/>
-                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
-                                     value="#{clientesBean.clientes.datancto}"/>
+	                <p:outputLabel for="cel" value="Celular:"/>
+	                <p:inputMask id="cel" mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
+                                     value="#{clientesBean.clientes.celular}" required="true"/>
+	                
         
 	            </h:panelGrid>   
 	      <p:separator/>
 	            <h:panelGrid>
                         <h:form>
                             <h:panelGrid id="pnCEP" columns="3">
-                                <h:outputText value="CEP: " />
-                                <p:inputMask mask="99999-999" value="#{clientesBean.cep}" />
+                                <h:outputText  value="CEP: " />
+                                <p:inputMask mask="99999-999" value="#{clientesBean.cep}"/>
 
                                 <p:commandButton value="Pesquisar" icon="ui-icon-search"
                                                  action="#{clientesBean.encontraCEP}" update=":form1" />
@@ -132,7 +136,7 @@
                     <h:outputText value="#{cli.endereco}"/>
             </p:column>
              
-            <p:column headerText="Endereço">
+            <p:column headerText="CEP">
                     <h:outputText value="#{cli.cep}"/>
             </p:column>
              

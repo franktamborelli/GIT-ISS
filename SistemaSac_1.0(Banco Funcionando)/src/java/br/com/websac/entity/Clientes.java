@@ -31,7 +31,8 @@ public class Clientes implements Serializable{
     private String endereco;
     private String numero;
     private String complemento;
-
+    private String cpf;
+    
     public Integer getId() {
         return id;
     }
@@ -47,6 +48,16 @@ public class Clientes implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
+    
 
     public String getEndereco() {
         return endereco;

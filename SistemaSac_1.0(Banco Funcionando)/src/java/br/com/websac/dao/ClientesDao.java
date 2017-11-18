@@ -48,6 +48,7 @@ public class ClientesDao {
             cli.setEmail(c.getEmail());
             cli.setCelular(c.getCelular());
             cli.setDatancto(c.getDatancto());
+            cli.setCpf(c.getCpf());
             
            
             
@@ -67,7 +68,8 @@ public class ClientesDao {
             sessao = HibernateUtil.getSessionFactory().openSession();
             trans = sessao.beginTransaction();
             
-            sessao.delete(c);
+            //c.setAtivo(false);
+            sessao.update(c);
             trans.commit();
         }
           catch (HibernateException e) {
