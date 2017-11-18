@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+<ui:define name="corpo"> 
+		
+	           
+    <title>Cadastrar Relevancia</title>  
+      <h:form id="form4">
+          
+          
+<h2>Relevancia</h2>
+     <p:tabView>
+        <p:tab title="Cadastro de Relevancia">
+        <p:separator/>
+             <h:panelGrid columns="2" cellpadding="10">
+	                <p:outputLabel for="rel" value="Grau de Relevancia:"/>
+                        <p:inputText id="rel" size="30" value="#{relevanciaBean.reles.grau}" required="true"/>
+             </h:panelGrid>
+        
+             <p:growl id="growl" showDetail="true" sticky="true"/>
+              
+               <p:panelGrid style="border:0px" >
+                   <p:commandButton value="Salvar" action="#{relevanciaBean.adicionarRelevancia}" update=":form4" />
+               </p:panelGrid>
+        </p:tab>
+     </p:tabView>
+
+      </h:form>
+</ui:define>
+</ui:composition>

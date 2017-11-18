@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.websac.entity;
 
 import java.io.Serializable;
@@ -10,16 +15,15 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Matheus Colares
+ * @author Frank
  */
 @Entity
-@Table(name="ORIGEM")
-public class Origem implements Serializable {
-    
+@Table(name="RELEVANCIA")
+public class Relevancia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String descricao;
+    private String grau;
 
     public Integer getId() {
         return id;
@@ -29,18 +33,18 @@ public class Origem implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getGrau() {
+        return grau;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setGrau(String grau) {
+        this.grau = grau;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -55,7 +59,7 @@ public class Origem implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Origem other = (Origem) obj;
+        final Relevancia other = (Relevancia) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

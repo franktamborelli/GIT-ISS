@@ -17,18 +17,18 @@
        <p:tab title="Cadastro de Funcionario">
         <p:separator/>
              <h:panelGrid columns="4" cellpadding="10">
-	                <p:outputLabel value="Nome:"/>
-                        <p:inputText size="55" value="#{funcionariosBean.funcionarios.nome}" />
-                        <p:outputLabel value="Cargo:"/>
-                        <p:inputText size="30" value="#{funcionariosBean.funcionarios.cargo}"/>
+	                <p:outputLabel for="name" value="Nome:"/>
+                        <p:inputText id="name" size="55" value="#{funcionariosBean.funcionarios.nome}" required="true"/>
+                        <p:outputLabel for="cargo" value="Cargo:"/>
+                        <p:inputText id="cargo" size="30" value="#{funcionariosBean.funcionarios.cargo}" required="true"/>
 	                <p:outputLabel value="Email:"/>
                         <p:inputText size="55" placeholder="Ex: example@dominio.com.br" 
                                      value="#{funcionariosBean.funcionarios.email}"/>
 	                <p:outputLabel value="Celular:"/>
 	                <p:inputMask mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
                                      value="#{funcionariosBean.funcionarios.celular}"/>
-	                <p:outputLabel value="Senha:"/>
-                        <p:password value="#{funcionariosBean.funcionarios.senha}"/>
+                        <p:outputLabel for="pass" value="Senha:"/>
+                        <p:password id="pass" value="#{funcionariosBean.funcionarios.senha}" required="true"/>
         
 	        </h:panelGrid>   
 	      <p:separator/>

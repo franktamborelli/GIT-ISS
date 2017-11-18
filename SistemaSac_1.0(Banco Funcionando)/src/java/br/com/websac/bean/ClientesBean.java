@@ -52,6 +52,7 @@ public class ClientesBean implements Serializable {
         clientes.setCep(null);
         clientes.setCidade(null);
         clientes.setUf(null);
+        clientes.setCpf(null);
         
         
         FacesContext context = FacesContext.getCurrentInstance();
@@ -74,6 +75,7 @@ public class ClientesBean implements Serializable {
         clientes.setCep(null);
         clientes.setCidade(null);
         clientes.setUf(null);
+        clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro removido com sucesso"));       
         return "cadastroCliente";
@@ -105,6 +107,7 @@ public class ClientesBean implements Serializable {
         clientes.setCep(null);
         clientes.setCidade(null);
         clientes.setUf(null);
+        clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro atualizado com sucesso"));
         return "cadastrarCliente";
