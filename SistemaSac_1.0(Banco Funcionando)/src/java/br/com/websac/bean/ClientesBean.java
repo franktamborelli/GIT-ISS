@@ -57,7 +57,7 @@ public class ClientesBean implements Serializable {
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro criado com sucesso"));
-        return "cadastrarCliente";
+        return "tabelaCliente";
     }
     
     public String removerCliente(Clientes c){
@@ -78,7 +78,7 @@ public class ClientesBean implements Serializable {
         clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro removido com sucesso"));       
-        return "cadastroCliente";
+        return "tabelaCliente";
     }
     
     public List listarClientes(){
@@ -110,7 +110,7 @@ public class ClientesBean implements Serializable {
         clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro atualizado com sucesso"));
-        return "cadastrarCliente";
+        return "tabelaCliente";
     }
     
     public void encontraCEP() {

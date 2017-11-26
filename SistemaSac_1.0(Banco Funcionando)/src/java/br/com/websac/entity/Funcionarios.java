@@ -1,5 +1,6 @@
 package br.com.websac.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="FUNCIONARIO")
-public class Funcionarios {
+public class Funcionarios implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

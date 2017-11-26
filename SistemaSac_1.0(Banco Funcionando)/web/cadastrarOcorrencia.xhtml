@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Criar Ocorrencia</title>  
+      <h:form id="form6">
+
+<h2>Ocorrencia</h2>
+     <p:tabView>
+        <p:tab title="Criar ocorrencia">
+        <p:separator/>
+        <h:panelGrid columns="8" cellpadding="5">
+	               <!-- <p:outputLabel for="name" value="Cliente:" />
+                        <p:scrollPanel mode="native" style="width:230px;height:150px">
+                        <p:se"  />
+                        </p:selectOneListbox>
+                        </p:scrollPanel> -->
+                        
+                       <p:outputLabel for="cliente" value="Cliente: " />
+                       <p:selectOneMenu id="cliente" value="#{OcorrenciaBean.ocorrencia.id_cliente}" effect="fold" editable="true" filter="true" 
+                                        filterMatchMode="contains" converter="clienteConverter" required="true">
+                             <f:selectItems value="#{OcorrenciaBean.listarClientes()}" var="cli"
+                                            itemLabel="#{cli.nome}" itemValue="#{cli.id}"  />
+                             
+                             
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="funcionario" value="Atendente: " />
+                        <p:selectOneMenu id="funcionario" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_funcionario}" 
+                                            editable="true" filter="true" filterMatchMode="contains" 
+                                                style="width:100px" converter="funcionarioConverter" required="true">
+                            <f:selectItems value="#{OcorrenciaBean.listarFuncionarios()}" var="fun"
+                                            itemLabel="#{fun.nome}" itemValue="#{fun.id}"  />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="filial" value="Filial: " />
+                        <p:selectOneMenu id="filial" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_filial}"
+                                            editable="true" filter="true" filterMatchMode="contains" style="width:100px" 
+                                                required="true" converter="filialConverter">
+                            <f:selectItems value="#{OcorrenciaBean.listarFilial()}" var="fil"
+                                           itemLabel="#{fil.descricao}" itemValue="#{fil.id}"  />
+                        </p:selectOneMenu>
+                        
+                        
+	</h:panelGrid>
+        <p:separator/>
+        <h:panelGrid columns="6" cellpadding="5">
+               <p:outputLabel for="relevancia" value="Relevancia: " />
+               <p:selectOneMenu id="relevancia" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_relevancia}"
+                                  editable="true" filter="true" filterMatchMode="contains" style="width:100px" 
+                                    required="true" converter="relevanciaConverter">
+                            <f:selectItems value="#{OcorrenciaBean.listarRelevancia()}" var="rel"
+                                           itemLabel="#{rel.grau}" itemValue="#{rel.id}"  />
+                        </p:selectOneMenu>
+            
+             <p:outputLabel for="origem" value="Origem: " />
+             <p:selectOneMenu id="origem" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_origem}"
+                                editable="true" filter="true" converter="origemConverter"
+                                    filterMatchMode="contains" style="width:100px" required="true">
+                            <f:selectItems value="#{OcorrenciaBean.listarOrigem()}" var="ori"
+                                           itemLabel="#{ori.descricao}" itemValue="#{ori.id}"  />
+                        </p:selectOneMenu>
+             <p:outputLabel for="status" value="Status: " />
+             <p:selectOneMenu id="status" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_status}"
+                              editable="true" filter="true" converter="statusConverter"
+                                         filterMatchMode="contains" style="width:100px" required="true">
+                            <f:selectItems value="#{OcorrenciaBean.listarStatus()}" var="stat"
+                                           itemLabel="#{stat.descricao}" itemValue="#{stat.id}"  />
+                        </p:selectOneMenu>
+                        <p:outputLabel for="data" value="Data de Abertura:"/>
+                        <p:calendar navigator="true" pattern="dd-MM-yyyy" locale="pt" 
+                                    value="#{OcorrenciaBean.ocorrencia.data}" required="true" id="data" 
+                                    maxdate="06/12/2017" />
+        </h:panelGrid>
+        <p:separator/>
+        <p:separator/>
+        <h:panelGrid>
+            <p:outputLabel for="descricao" value="Descrição da Ocorrência:" style="font-size: 20px "/>
+                <p:inputTextarea id="descricao" rows="5" cols="100" counter="display" maxlength="200" counterTemplate="{0} 
+                                 characters remaining." autoResize="false" value="#{OcorrenciaBean.ocorrencia.descricao}" required="true"/>
+                <h:outputText id="display" />
+        </h:panelGrid>
+        
+        <p:separator/>
+              
+              <p:growl id="growl" showDetail="true" sticky="true"/>
+              
+              <p:panelGrid  style="border:0px ">
+           
+                  <p:commandButton value="Salvar" action="#{OcorrenciaBean.adicionarOcorrencia}" update=":form6" />
+                 
+              </p:panelGrid>
+        
+	      	
+        </p:tab>
+    </p:tabView>
+      
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

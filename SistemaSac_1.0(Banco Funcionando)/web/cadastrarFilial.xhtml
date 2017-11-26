@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+   
+    
+    <ui:define name="corpo">              
+        <title>Cadastrar Filial</title>
+  
+ <h:form id="form2">
+
+<h2>Filial</h2>
+     <p:tabView>
+       <p:tab title="Cadastro de Filial">
+        <p:separator/>
+             <h:panelGrid columns="4" cellpadding="10">
+	                <p:outputLabel for="name" value="Descrição:"/>
+                        <p:inputText id="name" size="55" value="#{filialBean.filial.descricao}" required="true"/>
+	                <p:outputLabel value="Telefone:"/>
+	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
+                                     value="#{filialBean.filial.telefone}"/>
+        
+	        </h:panelGrid>   
+	      <p:separator/>
+              
+              <p:growl id="growl" showDetail="true" sticky="true"/>
+              
+              <p:panelGrid  style="border:0px ">
+           
+                  <p:commandButton value="Salvar" action="#{filialBean.adicionarFilial}" update=":form2" />
+                 
+              </p:panelGrid>
+        </p:tab>
+    </p:tabView>
+    </h:form>              
+                    
+          
+    </ui:define>
+
+</ui:composition>

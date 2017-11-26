@@ -1,12 +1,14 @@
 package br.com.websac.dao;
 
 import br.com.websac.entity.Clientes;
+import br.com.websac.entity.Funcionarios;
 import br.com.websac.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -49,6 +51,7 @@ public class ClientesDao {
             cli.setCelular(c.getCelular());
             cli.setDatancto(c.getDatancto());
             cli.setCpf(c.getCpf());
+            cli.setStatus("Ativo");
             
            
             
@@ -62,13 +65,15 @@ public class ClientesDao {
         } 
     }
     
+    
+    
     public void removerCliente(Clientes c){
         
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             trans = sessao.beginTransaction();
             
-            //c.setAtivo(false);
+            c.setStatus("Inativo");
             sessao.update(c);
             trans.commit();
         }

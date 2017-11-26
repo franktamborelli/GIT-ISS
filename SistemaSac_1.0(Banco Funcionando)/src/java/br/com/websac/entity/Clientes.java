@@ -2,6 +2,7 @@ package br.com.websac.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +20,14 @@ public class Clientes implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column (length=100, nullable=false)
     private String nome;
+    @Column (length=100, nullable=false, unique = true)
+    private String cpf;
+    private String status;
     private String telefone;
     private String celular;
+    @Column (nullable=false, unique = true)
     private String email;
     private String datancto;
     private String cep;
@@ -31,7 +37,6 @@ public class Clientes implements Serializable{
     private String endereco;
     private String numero;
     private String complemento;
-    private String cpf;
     
     public Integer getId() {
         return id;
@@ -56,8 +61,14 @@ public class Clientes implements Serializable{
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getEndereco() {
         return endereco;

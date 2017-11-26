@@ -19,9 +19,9 @@ public class Filial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String descricao;
-    private String endereco;
-    private String cidade;
-    private String uf;
+    //private String endereco;
+    //private String cidade;
+    //private String uf;
     private String telefone;
 
     public Integer getId() {
@@ -40,29 +40,29 @@ public class Filial {
         this.descricao = descricao;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  //  public String getEndereco() {
+//        return endereco;
+   // }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  // public void setEndereco(String endereco) {
+     //   this.endereco = endereco;
+   // }
 
-    public String getCidade() {
-        return cidade;
-    }
+  //  public String getCidade() {
+    //    return cidade;
+   // }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+  //  public void setCidade(String cidade) {
+  //      this.cidade = cidade;
+  //  }
 
-    public String getUf() {
-        return uf;
-    }
+   // public String getUf() {
+   //     return uf;
+   // }
 
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
+   // public void setUf(String uf) {
+    //    this.uf = uf;
+    //}
 
     public String getTelefone() {
         return telefone;

@@ -41,46 +41,6 @@
                  
               </p:panelGrid>
         </p:tab>
-     
-       <p:tab title="Relatório de Funcionários">
-         <p:dataTable id="itensTable" value="#{funcionariosBean.listarFuncionarios()}" var="fun"
-            emptyMessage="Nenhum item adicionado."
-            reflow="true"
-            style="margin-top: 10px; ">
-
-            <p:column headerText="Id">
-                    <h:outputText value="#{fun.id}"/>
-            </p:column>
-
-            <p:column headerText="Nome">
-                    <h:outputText value="#{fun.nome}"/>
-            </p:column>
-             
-            <p:column headerText="Cargo">
-                    <h:outputText value="#{fun.cargo}"/>
-            </p:column>
-
-            <p:column headerText="Celular">
-                    <h:outputText value="#{fun.celular}"/>
-            </p:column>
-
-            <p:column headerText="Email">
-                    <h:outputText value="#{fun.email}"/>
-            </p:column>
-             
-            <p:column headerText="Senha">
-                    <h:outputText value="#{fun.senha}"/>
-            </p:column>
-             
-            
-            <p:column headerText="Ação">
-                <h:commandLink value = "Remover" action="#{funcionariosBean.removerFuncionario(fun)}"/>
-               <p:separator/>
-               <h:commandLink value = "Atualizar" action="#{funcionariosBean.carregarFuncionarios(fun)}"/>
-            </p:column>           
-             
-            </p:dataTable>
-     </p:tab>
     </p:tabView>
     </h:form>              
                     

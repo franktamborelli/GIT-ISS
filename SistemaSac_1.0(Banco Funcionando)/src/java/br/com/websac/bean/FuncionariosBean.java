@@ -34,7 +34,7 @@ public class FuncionariosBean implements Serializable {
         funcionario.setSenha(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario adicionado com sucesso"));
-        return "cadastrarFuncionario";
+        return "tabelaFuncionario";
     }
     
     public String removerFuncionario(Funcionarios f){
@@ -47,7 +47,7 @@ public class FuncionariosBean implements Serializable {
         funcionario.setSenha(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario removido com sucesso"));       
-        return "cadastrarFuncionario";
+        return "tabelaFuncionario";
     }
     
     public List listarFuncionarios(){
@@ -70,7 +70,7 @@ public class FuncionariosBean implements Serializable {
         funcionario.setSenha(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Funcionario atualizado com sucesso"));
-        return "cadastrarFuncionario";
+        return "tabelaFuncionario";
         
     }
         

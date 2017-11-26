@@ -1,71 +1,44 @@
 package br.com.websac.dao;
 
-import br.com.websac.entity.Funcionarios;
+import br.com.websac.entity.Filial;
 import br.com.websac.util.HibernateUtil;
 import java.util.List;
-import javax.persistence.NoResultException;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Frank
+ * @author Matheus
  */
-public class FuncionariosDao {
+public class FilialDao {
     
     private Session sessao;
     private Transaction trans;
-    private List<Funcionarios> list;
+    private List<Filial> list;
 
-    public List<Funcionarios> getList() {
+    public List<Filial> getList() {
         sessao = HibernateUtil.getSessionFactory().openSession();
         trans = sessao.beginTransaction();
         
-        Criteria cri = sessao.createCriteria(Funcionarios.class);
+        Criteria cri = sessao.createCriteria(Filial.class);
         this.list = cri.list();
                 
         return list;
     }
     
-    public Funcionarios getFuncionario(String funEmail, String funSenha) {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        trans = sessao.beginTransaction();
-        
-        //Funcionarios funcionario = new Funcionarios();
-        try {
-        Criteria log = sessao.createCriteria(Funcionarios.class);
-        log.add(Restrictions.eq("email", funEmail));
-        log.add(Restrictions.eq("senha", funSenha));
-        this.list = log.list();
-        
-        
-                
-        return list.get(0);
-        
-    } catch (IndexOutOfBoundsException e) {
-                    return null;
-              }
-        
-        
-    }
-    
-    public void addFuncionarios(Funcionarios f){
+    public void addFilial(Filial f){
         
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             trans = sessao.beginTransaction();
 
-            Funcionarios fun = new Funcionarios();
-            fun.setNome(f.getNome());
-            fun.setCargo(f.getCargo());
-            fun.setSenha(f.getSenha());
-            fun.setEmail(f.getEmail());
-            fun.setCelular(f.getCelular());
+            Filial fil = new Filial();
+            fil.setDescricao(f.getDescricao());
+            fil.setTelefone(f.getTelefone());
                         
-            sessao.save(fun);
+            sessao.save(fil);
             trans.commit();
         }
           catch (HibernateException e) {
@@ -74,7 +47,7 @@ public class FuncionariosDao {
               
         } 
     }
-    public void removerFuncionarios(Funcionarios f){
+    public void removerFilial(Filial f){
         
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
@@ -90,7 +63,7 @@ public class FuncionariosDao {
         } 
     }
     
-     public void atualizarFuncionarios(Funcionarios f){
+     public void atualizarFilial(Filial f){
         
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
