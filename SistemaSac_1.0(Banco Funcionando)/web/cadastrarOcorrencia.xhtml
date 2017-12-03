@@ -17,12 +17,7 @@
         <p:tab title="Criar ocorrencia">
         <p:separator/>
         <h:panelGrid columns="8" cellpadding="5">
-	               <!-- <p:outputLabel for="name" value="Cliente:" />
-                        <p:scrollPanel mode="native" style="width:230px;height:150px">
-                        <p:se"  />
-                        </p:selectOneListbox>
-                        </p:scrollPanel> -->
-                        
+	               
                        <p:outputLabel for="cliente" value="Cliente: " />
                        <p:selectOneMenu id="cliente" value="#{OcorrenciaBean.ocorrencia.id_cliente}" effect="fold" editable="true" filter="true" 
                                         filterMatchMode="contains" converter="clienteConverter" required="true">
@@ -37,7 +32,7 @@
                                             editable="true" filter="true" filterMatchMode="contains" 
                                                 style="width:100px" converter="funcionarioConverter" required="true">
                             <f:selectItems value="#{OcorrenciaBean.listarFuncionarios()}" var="fun"
-                                            itemLabel="#{fun.nome}" itemValue="#{fun.id}"  />
+                                           itemLabel="#{LoginBean.funci.nome}" itemValue="#{fun.id}" />
                         </p:selectOneMenu>
                         
                         <p:outputLabel for="filial" value="Filial: " />
@@ -71,13 +66,21 @@
              <p:selectOneMenu id="status" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_status}"
                               editable="true" filter="true" converter="statusConverter"
                                          filterMatchMode="contains" style="width:100px" required="true">
-                            <f:selectItems value="#{OcorrenciaBean.listarStatus()}" var="stat"
+                 <f:selectItems value="#{OcorrenciaBean.listarStatus()}" var="stat"
                                            itemLabel="#{stat.descricao}" itemValue="#{stat.id}"  />
-                        </p:selectOneMenu>
+             </p:selectOneMenu>
+              <p:outputLabel for="tpc" value="Tipo Ocorrenica: " />
+              <p:selectOneMenu id="tpc" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_tipo}"
+                              editable="true" filter="true" converter="tpcConverter"
+                                         filterMatchMode="contains" style="width:100px" required="true">
+                  <f:selectItems value="#{OcorrenciaBean.listarTpOcorrencia()}" var="tp"
+                                           itemLabel="#{tp.descricao}" itemValue="#{tp.id}"  />
+             </p:selectOneMenu>
                         <p:outputLabel for="data" value="Data de Abertura:"/>
                         <p:calendar navigator="true" pattern="dd-MM-yyyy" locale="pt" 
                                     value="#{OcorrenciaBean.ocorrencia.data}" required="true" id="data" 
-                                    maxdate="06/12/2017" />
+                                    mindate="04-12-2016"    maxdate="04-12-2017" />
+                       
         </h:panelGrid>
         <p:separator/>
         <p:separator/>

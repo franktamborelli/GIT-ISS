@@ -60,6 +60,10 @@ public class Ocorrencia implements Serializable {
     @OneToOne
     @JoinColumn(name="relevancia")
     private Relevancia id_relevancia;
+    
+    @OneToOne
+    @JoinColumn(name="tipo")
+    private TipoOcorrencia id_tipo;
     //private String relevancia;
 
     public Long getProtocolo() {
@@ -136,13 +140,13 @@ public class Ocorrencia implements Serializable {
         this.id_relevancia = id_relevancia;
     }
 
-//    public String getRelevancia() {
-//        return relevancia;
-//    }
+    public TipoOcorrencia getId_tipo() {
+        return id_tipo;
+    }
 
-//    public void setRelevancia(String relevancia) {
-//        this.relevancia = relevancia;
-//    }
+    public void setId_tipo(TipoOcorrencia id_tipo) {
+        this.id_tipo = id_tipo;
+    }
     
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();

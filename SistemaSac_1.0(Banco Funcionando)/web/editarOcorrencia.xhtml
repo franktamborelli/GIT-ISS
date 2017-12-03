@@ -1,0 +1,87 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Atualizar Ocorrencia</title>  
+      <h:form>
+
+<h2>Atualizar Ocorrencia</h2>
+     <p:tabView>
+        <p:tab title="Cadastro de Ocorrencia">
+       <h:panelGrid columns="8" cellpadding="5">
+	               
+               <h:outputLabel for="name" value="Cliente:" style="font-weight:bold" />
+                    <p:inputText id="name" value="#{OcorrenciaBean.ocorrencia.id_cliente.nome}" disabled="true"/>
+                          
+               <p:outputLabel for="funcionario" value="Atendente: " />
+               <p:inputText id="funcionario" value="#{OcorrenciaBean.ocorrencia.id_funcionario.nome}" disabled="true"/>
+                        
+               <p:outputLabel for="filial" value="Filial: " />
+                    <p:inputText id="filial" value="#{OcorrenciaBean.ocorrencia.id_filial.descricao}" disabled="true"/>
+                    
+	</h:panelGrid>
+        <p:separator/>
+        <h:panelGrid columns="6" cellpadding="5">
+               <p:outputLabel for="relevancia" value="Relevancia: " />
+               <p:inputText id="relevancia" value="#{OcorrenciaBean.ocorrencia.id_relevancia.grau}" disabled="true"/>
+            
+             <p:outputLabel for="origem" value="Origem: " />
+             <p:inputText id="origem" value="#{OcorrenciaBean.ocorrencia.id_origem}"  disabled="true"/>
+
+             <p:outputLabel for="status" value="Status: " />
+             <p:inputText id="status" value="#{OcorrenciaBean.ocorrencia.id_status.descricao}" disabled="true"/>
+
+             <p:outputLabel for="tpc" value="Tipo Ocorrenica: " />
+             <p:inputText id="tpc" value="#{OcorrenciaBean.ocorrencia.id_tipo.descricao}" disabled="true"/>
+
+            <p:outputLabel for="data" value="Data de Abertura:"/>
+             <p:calendar navigator="true" pattern="dd-MM-yyyy" locale="pt" 
+                                    value="#{OcorrenciaBean.ocorrencia.data}" required="true" id="data" 
+                                    mindate="04-12-2016"    maxdate="04-12-2017" disabled="true"/>
+                       
+        </h:panelGrid>
+        <p:separator/>
+        <p:separator/>
+        <h:panelGrid>
+            <p:outputLabel for="descricao" value="Descrição da Ocorrência:" style="font-size: 20px "/>
+                <p:inputTextarea id="descricao" rows="5" cols="100" counter="display" maxlength="200" counterTemplate="{0} 
+                                 characters remaining." autoResize="false" value="#{OcorrenciaBean.ocorrencia.descricao}" required="true" disabled="true"/>
+                <h:outputText id="display" />
+        </h:panelGrid>
+<p:separator/>
+
+             <p:outputLabel for="status2" value="Status: " />
+             <p:selectOneMenu id="status2" effect="fold" value="#{OcorrenciaBean.ocorrencia.id_status}"
+                              editable="true" filter="true" converter="statusConverter"
+                                         filterMatchMode="contains" style="width:100px" required="true">
+                 <f:selectItems value="#{OcorrenciaBean.listarStatusEditar()}" var="stat"
+                                           itemLabel="#{stat.descricao}" itemValue="#{stat.id}"  />
+             </p:selectOneMenu>
+             
+<p:separator/>
+       <h:panelGrid>
+            <p:outputLabel for="resolucao" value="Resolução da Ocorrência:" style="font-size: 20px "/>
+                <p:inputTextarea id="resolucao" rows="5" cols="100" counter="display" maxlength="200" counterTemplate="{0} 
+                                 characters remaining." autoResize="false" value="#{OcorrenciaBean.ocorrencia.resposta}" required="true"/>
+                <h:outputText id="display2" />
+        </h:panelGrid>
+      
+    </p:tab>
+
+    </p:tabView>
+       <p:panelGrid style="border:0px">
+           
+           <p:commandButton value="Atualizar" action="#{OcorrenciaBean.atualizarOcorrecia}"/>
+         
+       </p:panelGrid>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>

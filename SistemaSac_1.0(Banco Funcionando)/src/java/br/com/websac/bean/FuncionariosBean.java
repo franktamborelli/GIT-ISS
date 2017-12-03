@@ -1,6 +1,7 @@
 package br.com.websac.bean;
 
 import br.com.websac.dao.FuncionariosDao;
+import br.com.websac.entity.Cargo;
 import br.com.websac.entity.Funcionarios;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -21,6 +22,8 @@ public class FuncionariosBean implements Serializable {
     private Funcionarios funcionario = new Funcionarios();
     private FuncionariosDao funcionariodao = new FuncionariosDao();
     private List<Funcionarios> listfuncionario;
+    private List<Cargo> listcargo;
+
      
     
   
@@ -54,7 +57,12 @@ public class FuncionariosBean implements Serializable {
         listfuncionario = funcionariodao.getList();
         return this.listfuncionario;
     }
-        
+    
+    public List listarCargos(){
+        listcargo = funcionariodao.getListCargo();
+        return this.listcargo;
+    }
+    
     public String carregarFuncionarios(Funcionarios f){
         funcionario = f;
         return"editarFuncionario";

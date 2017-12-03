@@ -19,8 +19,16 @@
              <h:panelGrid columns="4" cellpadding="10">
 	                <p:outputLabel for="name" value="Nome:"/>
                         <p:inputText id="name" size="55" value="#{funcionariosBean.funcionarios.nome}" required="true"/>
-                        <p:outputLabel for="cargo" value="Cargo:"/>
-                        <p:inputText id="cargo" size="30" value="#{funcionariosBean.funcionarios.cargo}" required="true"/>
+                        
+                       <p:outputLabel for="cargo" value="Cargo: " />
+                       <p:selectOneMenu id="cargo" value="#{funcionariosBean.funcionarios.cargo}" effect="fold" editable="true" filter="true" 
+                                        filterMatchMode="contains" converter="cargoConverter" required="true">
+                           <f:selectItems value="#{funcionariosBean.listarCargos()}" var="car"
+                                            itemLabel="#{car.descricao}" itemValue="#{car.id}"  />
+                             
+                             
+                        </p:selectOneMenu>
+                        
 	                <p:outputLabel value="Email:"/>
                         <p:inputText size="55" placeholder="Ex: example@dominio.com.br" 
                                      value="#{funcionariosBean.funcionarios.email}"/>

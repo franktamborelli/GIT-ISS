@@ -23,7 +23,7 @@
              </p:panelGrid>
         </h:form>
            
-         <p:dataTable id="itensTable" value="#{funcionariosBean.listarFuncionarios()}" var="fun"
+           <p:dataTable id="itensTable" value="#{funcionariosBean.listarFuncionarios()}" var="fun"
             emptyMessage="Nenhum item adicionado."
             reflow="true"
             style="margin-top: 10px; ">
@@ -37,7 +37,7 @@
             </p:column>
              
             <p:column headerText="Cargo">
-                    <h:outputText value="#{fun.cargo}"/>
+                    <h:outputText value="#{fun.cargo.descricao}"/>
             </p:column>
 
             <p:column headerText="Celular">

@@ -12,14 +12,15 @@
     <title>Tela Login</title>  
       <h:form id="form1">
      <p:tabView>
-        <p:tab title="Acesse">
+         <p:tab title="Acesse">
+             
         	       
                         <h:panelGrid columns="2" styleClass="grid-login">
-    				<p:outputLabel value="E-mail" />
-                                <p:inputText id="email" size="30" value="#{LoginBean.funci.email}" required="true"/>
-    				
-    				<p:outputLabel value="Senha" />
-                                <p:password size="30" value="#{LoginBean.funci.senha}"/>
+    				<p:outputLabel for="email" value="E-mail" />
+                                <p:inputText id="email" size="30" value="#{LoginBean.email}" required="true" />
+                                
+    				<p:outputLabel for="pass" value="Senha" />
+                                <p:password id="pass" size="30" value="#{LoginBean.senha}" required="true"/>
     				
                                 <p:growl id="growl" showDetail="true" sticky="true"/>
    

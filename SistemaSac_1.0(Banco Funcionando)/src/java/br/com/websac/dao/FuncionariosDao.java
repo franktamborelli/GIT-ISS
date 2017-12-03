@@ -1,5 +1,6 @@
 package br.com.websac.dao;
 
+import br.com.websac.entity.Cargo;
 import br.com.websac.entity.Funcionarios;
 import br.com.websac.util.HibernateUtil;
 import java.util.List;
@@ -19,6 +20,7 @@ public class FuncionariosDao {
     private Session sessao;
     private Transaction trans;
     private List<Funcionarios> list;
+    private List<Cargo> listcargo;
 
     public List<Funcionarios> getList() {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -30,6 +32,17 @@ public class FuncionariosDao {
         return list;
     }
     
+        public List<Cargo> getListCargo() {
+        
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        Criteria cri = sessao.createCriteria(Cargo.class);
+        this.listcargo = cri.list();
+                
+        return listcargo;
+    }
+        
     public Funcionarios getFuncionario(String funEmail, String funSenha) {
         sessao = HibernateUtil.getSessionFactory().openSession();
         trans = sessao.beginTransaction();

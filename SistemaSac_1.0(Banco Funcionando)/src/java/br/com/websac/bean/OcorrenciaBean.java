@@ -2,17 +2,16 @@ package br.com.websac.bean;
 
 import br.com.websac.dao.OcorrenciaDao;
 import br.com.websac.entity.Ocorrencia;
-import br.com.websac.dao.WebServiceCep;
 import br.com.websac.entity.Clientes;
 import br.com.websac.entity.Filial;
 import br.com.websac.entity.Funcionarios;
 import br.com.websac.entity.Origem;
 import br.com.websac.entity.Relevancia;
 import br.com.websac.entity.Status;
+import br.com.websac.entity.TipoOcorrencia;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.faces.application.FacesMessage;
@@ -35,7 +34,13 @@ public class OcorrenciaBean implements Serializable {
     private List<Origem> listorigem;
     private List<Filial> listfilial;
     private List<Status> liststatus;
+    private List<Status> liststatuseditar;
+    private List<Status> liststatustotal;
     private List<Relevancia> listrelevancia;
+    private List<TipoOcorrencia> listtpocorrencia;
+    private List<Ocorrencia> listocorrenciaporcliente;
+    private TipoOcorrencia tpocorrenciaprocura;
+    private List<Ocorrencia> listtpocorrenciaprocura;
     
     public String getMessage() {
         return message;
@@ -48,34 +53,42 @@ public class OcorrenciaBean implements Serializable {
     public String adicionarOcorrencia(){
         
         ocorrenciadao.addOcorrencia(ocorrencia);        
-        
-        //Ocorrencia.setCelular(null);
-        //Ocorrencia.setComplemento(null);
-        //Ocorrencia.setDatancto(null);
+
         ocorrencia.setDescricao(null);
+        ocorrencia.setData(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro criado com sucesso"));
-        return "cadastrarOcorrencia";
+        return "tabelaOcorrencia";
     }
     
     public String removerOcorrencia(Ocorrencia o){
         this.ocorrencia = o;
         ocorrenciadao.removerOcorrencia(this.ocorrencia);
-        
-        //Ocorrencia.setCelular(null);
-        //Ocorrencia.setComplemento(null);
-        //Ocorrencia.setDatancto(null);
-        
+
+        ocorrencia.setResposta(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro removido com sucesso"));       
         return "tabelaOcorrencia";
     }
     
+     public String procurarOcorrenciaTipo(){
+        
+        listtpocorrenciaprocura = ocorrenciadao.procurarOcorrenciaTipo(tpocorrenciaprocura);        
+
+        return "relatorioTipoOcorrencia";
+        //return this.listtpocorrenciaprocura;
+    }
+        
     public List listarOcorrencia(){
         listocorrencia = ocorrenciadao.getList();
         return this.listocorrencia;
     }
     
+    public List listarOcorrenciaPorCliente(){
+        listocorrenciaporcliente = ocorrenciadao.listPorCliente();
+        return this.listocorrenciaporcliente;
+    }
+        
      public List listarClientes(){
         listclientes = ocorrenciadao.getListClientes();
         return this.listclientes;
@@ -101,24 +114,35 @@ public class OcorrenciaBean implements Serializable {
         return this.liststatus;
     }
   
+    public List listarStatusEditar(){
+        liststatuseditar = ocorrenciadao.getListStatusEditar();
+        return this.liststatuseditar;
+    }
+    
+    public List listarStatusTotal(){
+        liststatustotal = ocorrenciadao.getListStatusTotal();
+        return this.liststatustotal;
+    }
+   
     public List listarRelevancia(){
         listrelevancia = ocorrenciadao.getListRelevancia();
         return this.listrelevancia;
     }
-     
+
+    public List listarTpOcorrencia(){
+        listtpocorrencia = ocorrenciadao.getListTpOcorrencia();
+        return this.listtpocorrencia;
+    }
+    
     public String carregarOcorrencia(Ocorrencia o){
         ocorrencia = o;
         
-        return"editarOcorrencia";
-    
+        return"editarOcorrencia"; 
     }
     
     public String atualizarOcorrecia(){
         ocorrenciadao.atualizarOcorrencia(ocorrencia);
         
-        //Ocorrencia.setCelular(null);
-        //Ocorrencia.setComplemento(null);
-        //Ocorrencia.setDatancto(null);
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro atualizado com sucesso"));
@@ -148,9 +172,15 @@ public class OcorrenciaBean implements Serializable {
     public void setCliO(Clientes cliO) {
         this.cliO = cliO;
     }
+
+    public TipoOcorrencia getTpocorrenciaprocura() {
+        return tpocorrenciaprocura;
+    }
+
+    public void setTpocorrenciaprocura(TipoOcorrencia tpocorrenciaprocura) {
+        this.tpocorrenciaprocura = tpocorrenciaprocura;
+    }
     
-    
-   
     
     @Override
     public int hashCode() {
@@ -171,10 +201,7 @@ public class OcorrenciaBean implements Serializable {
             return false;
         }
         final OcorrenciaBean other = (OcorrenciaBean) obj;
-        if (!Objects.equals(this.ocorrencia, other.ocorrencia)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.ocorrencia, other.ocorrencia);
     }
     
     

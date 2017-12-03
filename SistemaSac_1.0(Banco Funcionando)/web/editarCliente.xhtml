@@ -25,9 +25,10 @@
                         <p:outputLabel for="email" value="Email:"/>
                         <p:inputText id="email" size="55" placeholder="Ex: example@dominio.com.br" 
                                      value="#{clientesBean.clientes.email}" required="true"/>
-                        <p:outputLabel value="Data Nasc.:"/>
-                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
-                                     value="#{clientesBean.clientes.datancto}"/>
+                        <p:outputLabel for="date" value="Data Nasc.:"/>
+                        <p:calendar  size="55" id="date"
+                                     value="#{clientesBean.clientes.datancto}" mindate="1-1-1917" maxdate="04-12-1999"
+                                     navigator="true" pattern="dd-MM-yyyy" locale="pt"  />
 	                <p:outputLabel value="Telefone:"/>
 	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
                                      value="#{clientesBean.clientes.telefone}"/>

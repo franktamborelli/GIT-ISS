@@ -31,9 +31,6 @@
                     <h:outputText value="#{cli.id}"/>
             </p:column>
             
-            <p:column headerText="Status" >
-                    <h:outputText value="#{cli.status}"/>
-            </p:column>
 
             <p:column headerText="Nome">
                     <h:outputText value="#{cli.nome}"/>
@@ -43,8 +40,10 @@
                     <h:outputText value="#{cli.cpf}"/>
             </p:column>
              
-            <p:column headerText="Data Nascimento">
-                    <h:outputText value="#{cli.datancto}"/>
+            <p:column  headerText="Data Nascimento">
+                <h:outputText value="#{cli.datancto}">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
             </p:column>
 
             <p:column headerText="Celular">
@@ -59,19 +58,19 @@
                     <h:outputText value="#{cli.email}"/>
             </p:column>
              
-            <p:column headerText="Email">
+            <p:column headerText="Cidade">
                     <h:outputText value="#{cli.cidade}"/>
             </p:column>
             
-            <p:column headerText="Email">
+            <p:column headerText="Estado">
                     <h:outputText value="#{cli.uf}"/>
             </p:column>
             
-            <p:column headerText="Email">
+            <p:column headerText="Bairro">
                     <h:outputText value="#{cli.bairro}"/>
             </p:column>
              
-            <p:column headerText="Endereço">
+            <p:column headerText="Rua/AV">
                     <h:outputText value="#{cli.endereco}"/>
             </p:column>
              
@@ -86,7 +85,16 @@
             <p:column headerText="Complemento">
                     <h:outputText value="#{cli.complemento}"/>
             </p:column>
-            
+             
+             
+            <p:column headerText="Status" >
+                    <h:outputText value="#{cli.status}"/>
+            </p:column>
+             
+            <p:column headerText="Senha" >
+                    <h:outputText value="#{cli.senhaCliente}"/>
+            </p:column>
+             
              <p:column headerText="Ação">
                <h:commandLink value = "Remover" actionListener="#{clientesBean.removerCliente(cli)}"/>
                <p:separator/>

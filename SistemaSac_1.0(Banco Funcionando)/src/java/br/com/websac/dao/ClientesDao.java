@@ -51,6 +51,7 @@ public class ClientesDao {
             cli.setCelular(c.getCelular());
             cli.setDatancto(c.getDatancto());
             cli.setCpf(c.getCpf());
+            cli.setSenhaCliente(c.getSenhaCliente());
             cli.setStatus("Ativo");
             
            
@@ -100,4 +101,24 @@ public class ClientesDao {
         } 
     }
     
+      public Clientes getCliente(String cliEmail, String cliSenha) {
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        try {
+        Criteria log = sessao.createCriteria(Clientes.class);
+        log.add(Restrictions.eq("email", cliEmail));
+        log.add(Restrictions.eq("senhaCliente", cliSenha));
+        this.list = log.list();
+        
+        
+                
+        return list.get(0);
+        
+    } catch (IndexOutOfBoundsException e) {
+                    return null;
+              }
+        
+        
+    }
 }

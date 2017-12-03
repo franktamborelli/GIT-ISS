@@ -1,0 +1,32 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    
+    <!-- TOPO START -->
+    <h:form id="forml">
+    <div id="layout-topbar">
+        
+        <a href="index.xhtml"><h:graphicImage name="images/sac2.jpg"  library="adamantium-layout" style="height: 80px" /></a>
+        <ul id="top-menu">
+            <li>
+                <a><i class="icon-user2"></i> <span><p:outputLabel 
+                            value="Seja bem vindo: #{LoginBean.client.nome}"/> 
+                                                </span></a>
+                
+            </li>
+            <li>
+                <a class="menulink Animated05"><i class="icon-x"></i> <span><p:commandButton value="Sair do sistema"
+                                                                                           action="#{LoginBean.voltar}"
+                                                                                            />
+                                                                        </span></a>
+                
+            </li>
+        </ul>
+    </div>
+</h:form>
+    <!-- TOPO END -->
+    
+</ui:composition>

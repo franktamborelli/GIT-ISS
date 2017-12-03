@@ -53,6 +53,7 @@ public class ClientesBean implements Serializable {
         clientes.setCidade(null);
         clientes.setUf(null);
         clientes.setCpf(null);
+        clientes.setSenhaCliente(null);
         
         
         FacesContext context = FacesContext.getCurrentInstance();
@@ -195,8 +196,7 @@ public class ClientesBean implements Serializable {
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;

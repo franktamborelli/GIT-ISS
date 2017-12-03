@@ -5,12 +5,14 @@
  */
 package br.com.websac.dao;
 
+import br.com.websac.entity.Cargo;
 import br.com.websac.entity.Clientes;
 import br.com.websac.entity.Filial;
 import br.com.websac.entity.Funcionarios;
 import br.com.websac.entity.Origem;
 import br.com.websac.entity.Relevancia;
 import br.com.websac.entity.Status;
+import br.com.websac.entity.TipoOcorrencia;
 import br.com.websac.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -32,6 +34,8 @@ public class ConverterDao {
     private List<Relevancia> listRelevancia;
     private List<Origem> listOrigem;
     private List<Status> listStatus;
+    private List<TipoOcorrencia> listTpc;
+    private List<Cargo> listCargo;
     
     public Clientes buscaNomeCliente(String name){
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -104,5 +108,29 @@ public class ConverterDao {
         this.listStatus = buscaStatus.list();
         
         return listStatus.get(0);
+    }
+    
+     public Cargo buscaCargo(String name){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        Criteria buscaCargo = sessao.createCriteria(Cargo.class);
+        buscaCargo.add(Restrictions.eq("descricao", name));
+        
+        this.listCargo = buscaCargo.list();
+        
+        return listCargo.get(0);
+    }
+     
+    public TipoOcorrencia buscaTipoOcorrencia(String name){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        trans = sessao.beginTransaction();
+        
+        Criteria buscaTipoOcorrencia = sessao.createCriteria(TipoOcorrencia.class);
+        buscaTipoOcorrencia.add(Restrictions.eq("descricao", name));
+        
+        this.listTpc = buscaTipoOcorrencia.list();
+        
+        return listTpc.get(0);
     }
 }
