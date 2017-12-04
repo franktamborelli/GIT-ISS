@@ -52,5 +52,7 @@ Contributor(s):
     <mapping class="br.com.websac.entity.Status"/>
     <mapping class="br.com.websac.entity.Funcionarios"/>
     <mapping class="br.com.websac.entity.Relevancia"/>
+    <mapping class="br.com.websac.entity.Cargo"/>
+    <mapping class="br.com.websac.entity.TipoOcorrencia"/>
   </session-factory>
 </hibernate-configuration>

@@ -53,11 +53,12 @@ public class ClientesBean implements Serializable {
         clientes.setCidade(null);
         clientes.setUf(null);
         clientes.setCpf(null);
+        clientes.setSenhaCliente(null);
         
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro criado com sucesso"));
-        return "cadastrarCliente";
+        return "tabelaCliente";
     }
     
     public String removerCliente(Clientes c){
@@ -78,7 +79,7 @@ public class ClientesBean implements Serializable {
         clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro removido com sucesso"));       
-        return "cadastroCliente";
+        return "tabelaCliente";
     }
     
     public List listarClientes(){
@@ -110,7 +111,7 @@ public class ClientesBean implements Serializable {
         clientes.setCpf(null);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage ("Sucesso", "Cadastro atualizado com sucesso"));
-        return "cadastrarCliente";
+        return "tabelaCliente";
     }
     
     public void encontraCEP() {
@@ -195,8 +196,7 @@ public class ClientesBean implements Serializable {
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;

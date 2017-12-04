@@ -1,6 +1,11 @@
 package br.com.websac.entity;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -19,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="OCORRENCIA")
-public class Ocorrencia {
+public class Ocorrencia implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +35,7 @@ public class Ocorrencia {
     @JoinColumn(name="status")
     private Status id_status;
     
-    private String data;
+    private Date data;
     
     @OneToOne
     @JoinColumn(name="filial")
@@ -44,14 +50,21 @@ public class Ocorrencia {
     private Clientes id_cliente;
     
     @OneToOne
-    @JoinColumn(name="resolvedor")
+    @JoinColumn(name="responsavel")
     private Funcionarios id_funcionario;
     
     private String descricao;
     
     private String resposta;
     
-    private String relevancia;
+    @OneToOne
+    @JoinColumn(name="relevancia")
+    private Relevancia id_relevancia;
+    
+    @OneToOne
+    @JoinColumn(name="tipo")
+    private TipoOcorrencia id_tipo;
+    //private String relevancia;
 
     public Long getProtocolo() {
         return protocolo;
@@ -69,13 +82,15 @@ public class Ocorrencia {
         this.id_status = id_status;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
+
+   
 
     public Filial getId_filial() {
         return id_filial;
@@ -117,12 +132,26 @@ public class Ocorrencia {
         this.resposta = resposta;
     }
 
-    public String getRelevancia() {
-        return relevancia;
+    public Relevancia getId_relevancia() {
+        return id_relevancia;
     }
 
-    public void setRelevancia(String relevancia) {
-        this.relevancia = relevancia;
+    public void setId_relevancia(Relevancia id_relevancia) {
+        this.id_relevancia = id_relevancia;
+    }
+
+    public TipoOcorrencia getId_tipo() {
+        return id_tipo;
+    }
+
+    public void setId_tipo(TipoOcorrencia id_tipo) {
+        this.id_tipo = id_tipo;
+    }
+    
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
     public Funcionarios getId_funcionario() {

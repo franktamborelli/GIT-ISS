@@ -7,16 +7,32 @@
 	
 		<h:form>
 			<p:panelMenu style="width:250px">
-				<p:submenu label="CADASTROS BÁSICOS">
-                                    <p:menuitem value="Cadastrar Cliente" icon="icon-users" url="/cadastrarCliente.xhtml"/>
-                                        
-					<p:menuitem value="Cadastrar Funcionário" icon="icon-user" url="/cadastrarFuncionario.xhtml"/>
+				<p:submenu label="CADASTROS DE USUÁRIOS">
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadcli}" value="Cadastro Cliente" icon="icon-users" url="/tabelaCliente.xhtml"/>
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadfun}" value="Cadastro Funcionário" icon="icon-user" url="/tabelaFuncionario.xhtml"/>
 				</p:submenu>
                             
-                                <p:submenu label="CADASTROS OCORRÊNCIA">
-                                    <p:menuitem value="Cadastrar Origem" icon="icon-users" url="/cadastrarOrigem.xhtml"/>
+                            <p:submenu  rendered="#{LoginBean.funci.cargo.cadori}" label="CADASTROS BÁSICOS">
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadori}" value="Cadastrar Origem" icon="icon-users" url="/cadastrarOrigem.xhtml"/>
                                         
-					<p:menuitem value="Cadastrar Relevancia" icon="icon-user" url="/cadastrarRelevancia.xhtml"/>
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadrel}" value="Cadastrar Relevancia" icon="icon-user" url="/cadastrarRelevancia.xhtml"/>
+                                    
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadsta}" value="Cadastrar Status" icon="icon-user" url="/cadastrarStatus.xhtml"/>
+                            
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadsta}" value="Cadastrar Tipo" icon="icon-user" url="/cadastrarTipoOcorrencia.xhtml"/>
+                                    
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.cadfil}" value="Cadastro Filial" icon="icon-user" url="/tabelaFilial.xhtml"/>
+                                    
+				</p:submenu>
+                            
+                                <p:submenu label="CRIAR OCORRÊNCIA">
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.abriocorr}" value="Abrir Chamado" icon="icon-users" url="/tabelaOcorrencia.xhtml"/>
+                                    
+				</p:submenu>
+                            
+                                <p:submenu label="RELATORIO OCORRÊNCIA">
+                                    <p:menuitem rendered="#{LoginBean.funci.cargo.gerarrelatorio}" value="Por Tipo" icon="icon-users" url="/relatorioOcorrencia.xhtml"/>
+                                    
 				</p:submenu>
 			</p:panelMenu>	
 		</h:form>

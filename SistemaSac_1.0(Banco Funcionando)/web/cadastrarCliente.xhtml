@@ -25,15 +25,18 @@
                         <p:outputLabel for="email" value="Email:"/>
                         <p:inputText id="email" size="55" placeholder="Ex: example@dominio.com.br" 
                                      value="#{clientesBean.clientes.email}" required="true"/>
-                        <p:outputLabel value="Data Nasc.:"/>
-                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
-                                     value="#{clientesBean.clientes.datancto}"/>
+                        <p:outputLabel for="date" value="Data Nasc.:"/>
+                        <p:calendar  size="55" id="date"
+                                     value="#{clientesBean.clientes.datancto}" mindate="1-1-1917" maxdate="04-12-1999"
+                                     navigator="true" pattern="dd-MM-yyyy" locale="pt"  />
 	                <p:outputLabel value="Telefone:"/>
 	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
                                      value="#{clientesBean.clientes.telefone}"/>
 	                <p:outputLabel for="cel" value="Celular:"/>
 	                <p:inputMask id="cel" mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
                                      value="#{clientesBean.clientes.celular}" required="true"/>
+                        <p:outputLabel for="pass" value="Senha:"/>
+                        <p:password id="pass" value="#{clientesBean.clientes.senhaCliente}" required="true"/>
 	                
         
 	            </h:panelGrid>   
@@ -88,74 +91,6 @@
                    <p:commandButton value="Salvar" action="#{clientesBean.adicionarCliente}" update=":form1" />
                </p:panelGrid>	
         </p:tab>
-     
-         
-     <p:tab title="Relatório de Cliente">
-         <p:dataTable id="itensTable" value="#{clientesBean.listarClientes()}" var="cli"
-            emptyMessage="Nenhum item adicionado."
-            reflow="true"
-            style="margin-top: 10px; ">
-
-             <p:column headerText="Id" >
-                    <h:outputText value="#{cli.id}"/>
-            </p:column>
-
-            <p:column headerText="Nome">
-                    <h:outputText value="#{cli.nome}"/>
-            </p:column>
-             
-            <p:column headerText="Data Nascimento">
-                    <h:outputText value="#{cli.datancto}"/>
-            </p:column>
-
-            <p:column headerText="Celular">
-                    <h:outputText value="#{cli.celular}"/>
-            </p:column>
-
-            <p:column headerText="Telefone">
-                    <h:outputText value="#{cli.telefone}"/>
-            </p:column>
-
-            <p:column headerText="Email">
-                    <h:outputText value="#{cli.email}"/>
-            </p:column>
-             
-            <p:column headerText="Email">
-                    <h:outputText value="#{cli.cidade}"/>
-            </p:column>
-            
-            <p:column headerText="Email">
-                    <h:outputText value="#{cli.uf}"/>
-            </p:column>
-            
-            <p:column headerText="Email">
-                    <h:outputText value="#{cli.bairro}"/>
-            </p:column>
-             
-            <p:column headerText="Endereço">
-                    <h:outputText value="#{cli.endereco}"/>
-            </p:column>
-             
-            <p:column headerText="CEP">
-                    <h:outputText value="#{cli.cep}"/>
-            </p:column>
-             
-            <p:column headerText="N°">
-                    <h:outputText value="#{cli.numero}"/>
-            </p:column>
-
-            <p:column headerText="Complemento">
-                    <h:outputText value="#{cli.complemento}"/>
-            </p:column>
-            
-             <p:column headerText="Ação">
-               <h:commandLink value = "Remover" actionListener="#{clientesBean.removerCliente(cli)}"/>
-               <p:separator/>
-               <h:commandLink value = "Atualizar" action="#{clientesBean.carregarCliente(cli)}"/>
-            </p:column>           
-             
-            </p:dataTable>
-     </p:tab>
     </p:tabView>
       
     </h:form>

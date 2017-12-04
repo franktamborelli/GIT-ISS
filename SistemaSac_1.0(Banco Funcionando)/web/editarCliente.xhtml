@@ -16,29 +16,34 @@
             <p:tabView>
                 <p:tab title="Atualizar Cliente">
                     <p:separator/>
-                    <h:panelGrid columns="4" cellpadding="10">
-                        <p:outputLabel value="Nome:"/>
-                        <p:inputText size="55" value="#{clientesBean.clientes.nome}" />
-                        <p:outputLabel value="Email:"/>
-                        <p:inputText size="55" placeholder="Ex: example@dominio.com.br" 
-                                     value="#{clientesBean.clientes.email}"/>
-                        <p:outputLabel value="Telefone:"/>
-                        <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
+             <h:panelGrid columns="4" cellpadding="10">
+	               <p:outputLabel for="name" value="Nome:"/>
+                        <p:inputText id="name" size="55" value="#{clientesBean.clientes.nome}" required="true"/>
+                        <p:outputLabel for="cpf" value="CPF:"/>
+                        <p:inputMask  mask="999.999.999-99" size="55" 
+                                     value="#{clientesBean.clientes.cpf}" required="true" id="cpf"/>
+                        <p:outputLabel for="email" value="Email:"/>
+                        <p:inputText id="email" size="55" placeholder="Ex: example@dominio.com.br" 
+                                     value="#{clientesBean.clientes.email}" required="true"/>
+                        <p:outputLabel for="date" value="Data Nasc.:"/>
+                        <p:calendar  size="55" id="date"
+                                     value="#{clientesBean.clientes.datancto}" mindate="1-1-1917" maxdate="04-12-1999"
+                                     navigator="true" pattern="dd-MM-yyyy" locale="pt"  />
+	                <p:outputLabel value="Telefone:"/>
+	                <p:inputMask mask="(99)9999-9999" placeholder="Ex: (21) 2616-0000 " size="55" 
                                      value="#{clientesBean.clientes.telefone}"/>
-                        <p:outputLabel value="Celular:"/>
-                        <p:inputMask mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
-                                     value="#{clientesBean.clientes.celular}"/>
-                        <p:outputLabel value="Data Nasc.:"/>
-                        <p:inputMask mask="99/99/9999" size="55" placeholder="Ex: 01/01/2000" 
-                                     value="#{clientesBean.clientes.datancto}"/>
-
-                    </h:panelGrid>   
+	                <p:outputLabel for="cel" value="Celular:"/>
+	                <p:inputMask id="cel" mask="(99)9.9999-9999" placeholder="Ex: (21) 9.8781-0000" size="55" 
+                                     value="#{clientesBean.clientes.celular}" required="true"/>
+	                
+        
+	            </h:panelGrid> 
                     <p:separator/>
-                    <h:panelGrid columns="6">
+                    <h:panelGrid>
                         <h:form>
                             <h:panelGrid id="pnCEP" columns="3">
-                                <h:outputText value="CEP: " />
-                                <p:inputMask mask="99999-999" value="#{clientesBean.cep}" />
+                                <h:outputText  value="CEP: " />
+                                <p:inputMask mask="99999-999" value="#{clientesBean.cep}"/>
 
                                 <p:commandButton value="Pesquisar" icon="ui-icon-search"
                                                  action="#{clientesBean.encontraCEP}" update=":form1" />
@@ -49,14 +54,13 @@
                             <h:panelGrid id="pnResultado" columns="4">
                                 <h:outputLabel value="Rua / Av: "
                                                style="font-weight:bold; padding-right: 5px; float: right;" />
-                                
                                 <p:inputText size="50"
                                              value="#{clientesBean.logradouro}" />
                                 
-                                <p:outputLabel value="Nª"/>
+                                <p:outputLabel value="Nª" style="font-weight:bold; padding-right: 5px; float: right;"/>
                                 <p:inputText size="6" value="#{clientesBean.clientes.numero}"/>
                                 
-                                <p:outputLabel value="Complemento:"/>
+                                <p:outputLabel value="Complemento:" style="font-weight:bold; padding-right: 5px; float: right;"/>
                                 <p:inputText size="27" value="#{clientesBean.clientes.complemento}"/>
                                 
                                 <h:outputLabel value="Bairro: "
@@ -75,7 +79,6 @@
                             </h:panelGrid>
                         </h:form>
                     </h:panelGrid>
-
                 </p:tab>
 
             </p:tabView>

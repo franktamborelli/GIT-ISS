@@ -36,7 +36,7 @@ body {
   margin: 0px;
   height: 100%;
   width: 100%;
-  background-color: #f7f5f3;
+  background-color: #FFFFF;
   font-family: 'latoregular';
 }
 .loginback {
@@ -197,7 +197,7 @@ body {
 /* MENU ----------------------------------------------------------------------------------*/
 /*Layout Menu Cover */
 #layout-menu-cover {
-  background-color: #ffffff;
+  background-color: #d85461;
   position: fixed;
   z-index: 999;
   font-family: 'latobold';

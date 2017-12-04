@@ -1,7 +1,9 @@
 package br.com.websac.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +21,16 @@ public class Clientes implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column (length=100, nullable=false)
     private String nome;
+    @Column (length=100, nullable=false, unique = true)
+    private String cpf;
+    private String status;
     private String telefone;
     private String celular;
+    @Column (nullable=false, unique = true)
     private String email;
-    private String datancto;
+    private Date datancto;
     private String cep;
     private String cidade;
     private String uf;
@@ -31,7 +38,7 @@ public class Clientes implements Serializable{
     private String endereco;
     private String numero;
     private String complemento;
-    private String cpf;
+    private String senhaCliente;
     
     public Integer getId() {
         return id;
@@ -56,8 +63,14 @@ public class Clientes implements Serializable{
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getEndereco() {
         return endereco;
@@ -107,13 +120,15 @@ public class Clientes implements Serializable{
         this.celular = celular;
     }
 
-    public String getDatancto() {
+    public Date getDatancto() {
         return datancto;
     }
 
-    public void setDatancto(String datancto) {
+    public void setDatancto(Date datancto) {
         this.datancto = datancto;
     }
+
+    
 
     public String getCep() {
         return cep;
@@ -146,6 +161,18 @@ public class Clientes implements Serializable{
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
+
+    public String getSenhaCliente() {
+        return senhaCliente;
+    }
+
+    public void setSenhaCliente(String senhaCliente) {
+        this.senhaCliente = senhaCliente;
+    }
+
+    
+    
+    
     
     
     @Override

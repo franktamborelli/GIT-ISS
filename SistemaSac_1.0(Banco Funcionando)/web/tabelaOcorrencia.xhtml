@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+   
+    
+    <ui:define name="corpo">              
+        <title>Cadastrar Ocorrencia</title>
+  
+ <h:form id="form2">
+
+<h2>Ocorrencia</h2>
+     <p:tabView>
+       
+       <p:tab title="Relatório de Ocorrencia">
+           
+        <h:form>
+             <p:panelGrid style="border:0px" >
+                 <p:commandButton value="Inclui Nova Ocorrencia" action="cadastrarOcorrencia" />
+             </p:panelGrid>
+        </h:form>
+           
+           <p:dataTable id="itensTable" value="#{OcorrenciaBean.listarOcorrencia()}" var="oc"
+            emptyMessage="Nenhum item adicionado."
+            reflow="true"
+            style="margin-top: 10px; ">
+
+            <p:column headerText="Protocolo">
+                    <h:commandLink value = "#{oc.protocolo}" action="#{OcorrenciaBean.carregarOcorrencia(oc)}"/>
+            </p:column>
+               
+            <p:column headerText="Status">
+                    <h:outputText value="#{oc.id_status.descricao}"/>
+            </p:column>
+               
+            <p:column headerText="Nome">
+                    <h:outputText value="#{oc.id_cliente.nome}"/>
+            </p:column>
+               
+            <p:column headerText="Data">
+               <h:outputText value="#{oc.data}">
+                 <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+            </p:column>
+               
+            <p:column headerText="Atendente">
+                    <h:outputText value="#{oc.id_funcionario.nome}"/>
+            </p:column>
+                              
+            <p:column headerText="Loja">
+                    <h:outputText value="#{oc.id_filial.descricao}"/>
+            </p:column>
+               
+            <p:column headerText="Tipo">
+                    <h:outputText value="#{oc.id_tipo.descricao}"/>
+            </p:column>   
+               
+            <p:column headerText="Relevancia">
+                    <h:outputText value="#{oc.id_relevancia.grau}"/>
+            </p:column> 
+               
+            <p:column headerText="Descricao">
+                    <h:outputText value="#{oc.descricao}"/>
+            </p:column>  
+        
+             
+            </p:dataTable>
+     </p:tab>
+    </p:tabView>
+    </h:form>     
+    </ui:define>
+
+</ui:composition>

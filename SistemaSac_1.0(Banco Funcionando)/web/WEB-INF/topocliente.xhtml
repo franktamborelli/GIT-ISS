@@ -9,14 +9,16 @@
     <h:form id="forml">
     <div id="layout-topbar">
         
-        <a href="index.xhtml"><h:graphicImage name="images/sac2.jpg"  library="adamantium-layout"  style="height: 80px" /></a>
+        <a href="index.xhtml"><h:graphicImage name="images/sac2.jpg"  library="adamantium-layout" style="height: 80px" /></a>
         <ul id="top-menu">
             <li>
-                <a><i class="icon-user2"></i> <span><p:outputLabel value="Seja bem vindo: #{LoginBean.funci.nome}"/> </span></a>
+                <a><i class="icon-user2"></i> <span><p:outputLabel 
+                            value="Seja bem vindo: #{LoginBean.client.nome}"/> 
+                                                </span></a>
                 
             </li>
             <li>
-                <a class="menulink Animated05"><i class="icon-x"></i> <span><p:commandButton value="Sair do sistema" 
+                <a class="menulink Animated05"><i class="icon-x"></i> <span><p:commandButton value="Sair do sistema"
                                                                                            action="#{LoginBean.voltar}"
                                                                                             />
                                                                         </span></a>

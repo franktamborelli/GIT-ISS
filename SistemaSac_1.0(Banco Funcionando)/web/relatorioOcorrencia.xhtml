@@ -1,0 +1,121 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+   
+    
+    <ui:define name="corpo">              
+        <title>Relatório Ocorrencia</title>
+  
+ <h:form id="form2">
+
+<h2>Relatório Ocorrencia</h2>
+     <p:tabView>
+       
+       <p:tab title="Relatório de Ocorrencia">
+            
+           <p:dataTable id="itensTable" value="#{OcorrenciaBean.listarOcorrencia()}" var="oc"
+            emptyMessage="Nenhum item adicionado."
+            reflow="true"
+            widgetVar="ocorrenciaTable"
+            style="margin-top: 10px; ">
+
+               
+            <p:column headerText="Status"
+                filterBy="#{oco.id_status.descricao}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarStatusTotal()}" var="stat"
+                      itemLabel="#{stat.descricao}" itemValue="#{stat.descricao}"  />
+                </p:selectOneMenu>
+            </f:facet>
+                    <h:outputText value="#{oc.id_status.descricao}"/>
+            </p:column>
+   
+               
+            <p:column headerText="Atendente"
+                filterBy="#{oc.id_funcionario.nome}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarFuncionarios()}" var="fun"
+                      itemLabel="#{fun.nome}" itemValue="#{fun.nome}"  />
+                </p:selectOneMenu>
+            </f:facet>
+                    <h:outputText value="#{oc.id_funcionario.nome}"/>
+            </p:column>
+                              
+            <p:column headerText="Loja"
+             filterBy="#{oc.id_filial.descricao}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarFilial()}" var="fil"
+                      itemLabel="#{fil.descricao}" itemValue="#{fil.descricao}"  />
+                </p:selectOneMenu>
+            </f:facet>
+                    <h:outputText value="#{oc.id_filial.descricao}"/>
+            </p:column>
+               
+            <p:column headerText="Tipo"
+               filterBy="#{oc.id_tipo.descricao}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarTpOcorrencia()}" var="tp"
+                      itemLabel="#{tp.descricao}" itemValue="#{tp.descricao}"  />
+                </p:selectOneMenu>
+            </f:facet>
+                    <h:outputText value="#{oc.id_tipo.descricao}"/>
+            </p:column>   
+               
+            <p:column headerText="Relevancia"
+                 filterBy="#{oc.id_relevancia.grau}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarRelevancia()}" var="rel"
+                      itemLabel="#{rel.grau}" itemValue="#{rel.grau}"  />
+                </p:selectOneMenu>
+            </f:facet>
+                    <h:outputText value="#{oc.id_relevancia.grau}"/>
+            </p:column> 
+ 
+            <p:column headerText="Protocolo">
+                    <h:commandLink value = "#{oc.protocolo}" action="#{OcorrenciaBean.carregarOcorrencia(oc)}"/>
+            </p:column>              
+            
+            <p:column headerText="Data">
+               <h:outputText value="#{oc.data}">
+                 <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+            </p:column>
+               
+            <p:column headerText="Nome">
+                    <h:outputText value="#{oc.id_cliente.nome}"/>
+            </p:column>
+               
+            <p:column headerText="Descricao">
+                    <h:outputText value="#{oc.descricao}"/>
+            </p:column>  
+        
+            <p:column headerText="Resolução">
+                    <h:outputText value="#{oc.resposta}"/>
+            </p:column>  
+             
+            </p:dataTable>
+     </p:tab>
+    </p:tabView>
+    </h:form>     
+    </ui:define>
+
+</ui:composition>

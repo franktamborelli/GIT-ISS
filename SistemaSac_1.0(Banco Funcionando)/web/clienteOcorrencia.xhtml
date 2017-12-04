@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templateClient.xhtml">
+
+   
+    
+    <ui:define name="corpo">              
+        <title>Minhas Ocorrencias</title>
+  
+ <h:form id="form2">
+
+<h2>Ocorrencias</h2>
+     <p:tabView>
+       <p:tab title="Ocorrencias">           
+           <p:dataTable id="itensTable" value="#{OcorrenciaBean.listarOcorrenciaPorCliente()}" var="oco"
+            emptyMessage="Nenhum item adicionado."
+            reflow="true"
+            widgetVar="ocorrenciaTable"
+            style="margin-top: 10px; ">
+
+               <p:column headerText="Protocolo" >
+                    <h:outputText value="#{oco.protocolo}" />
+            </p:column>
+               
+            <p:column headerText="Nome">
+                    <h:outputText value="#{oco.id_cliente.nome}"/>
+            </p:column>
+               
+            <p:column headerText="Data">
+                    <h:outputText value="#{oco.data}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+            </p:column>
+               
+            <p:column headerText="Atendente">
+                    <h:outputText value="#{oco.id_funcionario.nome}"/>
+            </p:column>
+                              
+            <p:column headerText="Loja">
+                    <h:outputText value="#{oco.id_filial.descricao}"/>
+            </p:column>
+                
+            <p:column headerText="Descricao">
+                    <h:outputText value="#{oco.descricao}"/>
+            </p:column>
+               
+            <p:column headerText="Resolução">
+                    <h:outputText value="#{oco.resposta}"/>
+            </p:column>
+                              
+            <p:column headerText="Status"
+                filterBy="#{oco.id_status.descricao}" footerText="exact" filterMatchMode="exact">
+                
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('ocorrenciaTable').filter()" >
+                <f:selectItem itemLabel="Tudo" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{OcorrenciaBean.listarStatusTotal()}" var="stat"
+                      itemLabel="#{stat.descricao}" itemValue="#{stat.descricao}"  />
+                </p:selectOneMenu>
+            </f:facet>
+  
+                <h:outputText value="#{oco.id_status.descricao}"/>
+            </p:column>
+             
+            </p:dataTable>
+     </p:tab>
+    </p:tabView>
+    </h:form>    
+    </ui:define>
+
+</ui:composition>

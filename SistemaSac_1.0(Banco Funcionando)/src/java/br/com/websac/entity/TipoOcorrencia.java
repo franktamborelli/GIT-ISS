@@ -12,17 +12,13 @@ import javax.persistence.Table;
  * @author Matheus Colares
  */
 @Entity
-@Table(name="FILIAL")
-public class Filial {
+@Table(name="Tipo_Ocorrencia")
+public class TipoOcorrencia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String descricao;
-    //private String endereco;
-    //private String cidade;
-    //private String uf;
-    private String telefone;
 
     public Integer getId() {
         return id;
@@ -40,42 +36,10 @@ public class Filial {
         this.descricao = descricao;
     }
 
-  //  public String getEndereco() {
-//        return endereco;
-   // }
-
-  // public void setEndereco(String endereco) {
-     //   this.endereco = endereco;
-   // }
-
-  //  public String getCidade() {
-    //    return cidade;
-   // }
-
-  //  public void setCidade(String cidade) {
-  //      this.cidade = cidade;
-  //  }
-
-   // public String getUf() {
-   //     return uf;
-   // }
-
-   // public void setUf(String uf) {
-    //    this.uf = uf;
-    //}
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -90,7 +54,7 @@ public class Filial {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Filial other = (Filial) obj;
+        final TipoOcorrencia other = (TipoOcorrencia) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -98,5 +62,5 @@ public class Filial {
     }
     
     
-   
+    
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+<ui:define name="corpo"> 
+		
+	           
+    <title>Cadastrar Tipo de Ocorrencia</title>  
+      <h:form id="form3">
+          
+          
+<h2>Staus</h2>
+     <p:tabView>
+        <p:tab title="Cadastro Tipo de Ocorrencia">
+        <p:separator/>
+             <h:panelGrid columns="2" cellpadding="10">
+	                <p:outputLabel for="tpc" value="Tipo de Ocorrencia"/>
+                        <p:inputText id="tpc" size="30" value="#{tpcBean.tpc.descricao}" required="true"/>
+             </h:panelGrid>
+        
+             <p:growl id="growl" showDetail="true" sticky="true"/>
+              
+               <p:panelGrid style="border:0px" >
+                   <p:commandButton value="Salvar" action="#{tpcBean.adicionarTipoOcorrencia}" update=":form3" />
+               </p:panelGrid>
+        </p:tab>
+     </p:tabView>
+
+      </h:form>
+</ui:define>
+</ui:composition>

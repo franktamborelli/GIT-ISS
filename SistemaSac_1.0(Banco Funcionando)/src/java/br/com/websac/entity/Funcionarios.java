@@ -1,10 +1,13 @@
 package br.com.websac.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -13,13 +16,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="FUNCIONARIO")
-public class Funcionarios {
+public class Funcionarios implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;
-    private String cargo;
+    
+    @OneToOne
+    @JoinColumn(name="cargo")
+    private Cargo cargo;
+    
     private String senha;
     private String celular;
     private String email;
@@ -40,12 +47,12 @@ public class Funcionarios {
         this.nome = nome;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setCargo(Cargo id_cargo) {
+        this.cargo = id_cargo;
     }
 
     public String getSenha() {
